@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search</title>
+  <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+  <div>
+    <div class="container" style="width: 30%;">
+      <form action="/search" method="GET">
+        <input placeholder="Enter name product" type="text" name="productName">
+        <button type="submit">Search</button>
+      </form>
+      <% if(products.length === 0) { %>
+        <h4 style="text-align: center;">No product found</h4>
+      <% }%>
+
+      <% if(products.length !== 0) { %>
+        <h2 style="margin-left: auto; margin-right: auto;">List Products Table</h2>
+
+        <table class="w3-table-all w3-hoverable" border="1" style="width: 800px; text-align: center; margin: 0 auto;">
+          <thead>
+              <tr class="w3-light-grey">
+                  <th>STT</th>
+                  <th>Product name</th>
+                  <th>Description</th>
+                  <th>Price</th>
+              </tr>
+          </thead>
+          <tbody>
+               
+            <% for(let i=0; i < products.length; i++) { %>
+              <tr>
+                <td>
+                    
+                    <%= i+1 %>
+                </td>
+                <td>
+                    <%= products[i].productName %>
+                </td>
+                <td>
+                    <%= products[i].description %>
+                </td>
+                <td>
+                    <%= products[i].price %>
+                </td>
+              </tr>
+            <% } %>
+                </tbody>
+            
+        </table>
+        <% }%>
+    </div>
+
+</div>
+</body>
+</html>
