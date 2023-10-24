@@ -1,95 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="/css/style.css">
-  
-</head>
-<body>
-  <div>
-    <div class="create-product-container">
-      <form action="/create" method="POST">
-          <div><b><h3>Create a new product:</h3></b></div>
-          <div>
-              <label>Name:</label>
-              <input type="text" name="productName" />
-          </div>
-          <div>
-              <label>Description:</label>
-              <input type="text" name="description" />
-          </div>
-          <div>
-              <label>Price:</label>
-              <input type="text" name="price" />
-          </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add Products</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <div>
+            <div class="wrapper">
+                <section class="container home__container">
+                    <form action="/create" method="POST" class="home__form">
+                        <div>
+                            <div class="title">Add New Product</div>
+                        </div>
+                        <div>
+                            <label>Name Product:</label>
+                            <input type="text" name="productName" />
+                        </div>
+                        <div>
+                            <label>Price:</label>
+                            <input type="text" name="price" />
+                        </div>
+                        <div>
+                            <label>Description:</label>
+                            <input type="text" name="description" />
+                        </div>
 
-          <div>
-              <button type="submit" class="btn-submit">Submit</button>
-          </div>
+                        <div>
+                            <button type="submit" class="btn-submit">
+                                Add
+                            </button>
+                        </div>
+                    </form>
+                    <div class="home__table">
+                        <div class="title title-table">List Products Table</div>
+                        <% if(products.length === 0) { %>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product name</th>
+                                    <th>Description</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td colspan="5" class="empty_product">
+                                    No Product, Please Add Some
+                                </td>
+                            </tbody>
+                        </table>
+                        <% }%> <% if(products.length !== 0) { %>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i=0; i < products.length; i++) { %>
+                                <tr>
+                                    <td><%= i+1 %></td>
+                                    <td><%= products[i].productName %></td>
+                                    <td><%= products[i].price %></td>
+                                    <td><%= products[i].description %></td>
+                                    <td
+                                        style="
+                                            display: flex;
+                                            gap: 5px;
+                                            justify-content: space-evenly;
+                                            border: none;
+                                        "
+                                    >
+                                        <form
+                                            action="/<%= products[i].id %>/edit"
+                                            method="GET"
+                                        >
+                                            <button type="submit">Edit</button>
+                                        </form>
 
-      </form>
-
-  </div>
-  <div style="margin-left: 300px;">
-    <a href="/search">Move to search page</a>
-  </div>
-    <div class="container">
-      
-      <% if(products.length === 0) { %>
-        <h4 style="text-align: center;">No product, please add some</h4>
-      <% }%>
-
-      <% if(products.length !== 0) { %>
-        <h2 style="margin-left: 275px; margin-right: auto;">List Products Table</h2>
-
-        <table class="w3-table-all w3-hoverable" border="1" style="width: 800px; text-align: center; margin: 0 auto;">
-          <thead>
-              <tr class="w3-light-grey">
-                  <th>STT</th>
-                  <th>Product name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-                  <th>Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-               
-            <% for(let i=0; i < products.length; i++) { %>
-              <tr>
-                <td>
-                    
-                    <%= i+1 %>
-                </td>
-                <td>
-                    <%= products[i].productName %>
-                </td>
-                <td>
-                    <%= products[i].description %>
-                </td>
-                <td>
-                    <%= products[i].price %>
-                </td>
-                <td rowspan="2" style="display: flex; gap: 15px; margin-left: auto; justify-content: space-evenly;">
-
-                  <form action="/<%= products[i].id %>/edit" method="GET">
-                    <button type="submit">Edit</button>
-                  </form>
-
-                  <form action="/delete" method="POST">
-                    <input type="hidden" value="<%= products[i].id %>" name="productId" />
-                    <button type="submit">Delete</button>
-                  </form>
-                </td>
-              </tr>
-            <% } %>
-                </tbody>
-            
-        </table>
-        <% }%>
-    </div>
-    
-</div>
-</body>
+                                        <form action="/delete" method="POST">
+                                            <input
+                                                type="hidden"
+                                                value="<%= products[i].id %>"
+                                                name="productId"
+                                            />
+                                            <button type="submit">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                        <% }%>
+                    </div>
+                </section>
+                <section class="container">
+                    <div>
+                        <a href="/search" class="go-to">Move to search page</a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
 </html>

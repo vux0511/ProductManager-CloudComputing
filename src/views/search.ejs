@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search</title>
-  <link rel="stylesheet" href="/css/style.css">
-  
-</head>
-<body>
-  <div>
-    <div class="container" style="width: 30%;">
-      <form action="/search" method="GET">
-        <input placeholder="Enter name product" type="text" name="productName">
-        <button type="submit">Search</button>
-      </form>
-      <% if(products.length === 0) { %>
-        <h4 style="text-align: center;">No product found</h4>
-      <% }%>
-
-      <% if(products.length !== 0) { %>
-        <h2 style="margin-left: auto; margin-right: auto;">List Products Table</h2>
-
-        <table class="w3-table-all w3-hoverable" border="1" style="width: 800px; text-align: center; margin: 0 auto;">
-          <thead>
-              <tr class="w3-light-grey">
-                  <th>STT</th>
-                  <th>Product name</th>
-                  <th>Description</th>
-                  <th>Price</th>
-              </tr>
-          </thead>
-          <tbody>
-               
-            <% for(let i=0; i < products.length; i++) { %>
-              <tr>
-                <td>
-                    
-                    <%= i+1 %>
-                </td>
-                <td>
-                    <%= products[i].productName %>
-                </td>
-                <td>
-                    <%= products[i].description %>
-                </td>
-                <td>
-                    <%= products[i].price %>
-                </td>
-              </tr>
-            <% } %>
-                </tbody>
-            
-        </table>
-        <% }%>
-    </div>
-
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Search</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container search__container">
+                <form action="/search" method="GET" class="form__search">
+                    <div class="title">Seach Name Product</div>
+                    <input
+                        placeholder="Enter name product"
+                        type="text"
+                        name="productName"
+                    />
+                    <button type="submit">Search</button>
+                    <a href="/" class="go-to back-home">Go back Home </a>
+                </form>
+                <% if(products.length === 0) { %>
+                <div class="search__table">
+                    <div class="title title-table">List Name Product</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product name</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <td colspan="4" class="empty_product">
+                                No Product, Please Add Some
+                            </td>
+                        </tbody>
+                    </table>
+                </div>
+                <% }%> <% if(products.length !== 0) { %>
+                <div class="search__table">
+                    <div class="title title-table">List Name Product</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product name</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0; i < products.length; i++) { %>
+                            <tr>
+                                <td style="padding: 10px 25px"><%= i+1 %></td>
+                                <td style="padding: 10px 25px">
+                                    <%= products[i].productName %>
+                                </td>
+                                <td style="padding: 10px 25px">
+                                    <%= products[i].price %>
+                                </td>
+                                <td style="padding: 10px 25px">
+                                    <%= products[i].description %>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <% }%>
+            </div>
+        </div>
+    </body>
 </html>

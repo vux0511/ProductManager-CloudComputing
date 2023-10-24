@@ -1,68 +1,134 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
-
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+body {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
 }
 
+.wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.home__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+}
+table {
+    width: 100%;
+}
+table,
+th,
+td {
+    border: 1px solid #222;
+    border-collapse: collapse;
+    text-align: center;
+}
+th {
+    padding: 10px 25px;
+}
+td {
+    padding: 0 25px;
+}
+tr:hover {
+    background-color: rgba(241, 241, 241, 0.864);
+}
 
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
+.home__form {
+    width: 350px;
+}
+
+.title {
+    text-align: left;
+    font-size: 23px;
+    margin-bottom: 40px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+.title-table {
+    text-align: center;
+}
+.empty_product {
+    padding: 30px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: "Poppins", sans-serif;
+    outline: none;
 }
 
 button {
-  background-color: #04AA6D;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+    background-color: #ff6d2efe;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    font-family: "Poppins", sans-serif;
+    transition: all 0.25s ease-in-out;
+    font-weight: 500;
 }
 
 button:hover {
-  opacity: 0.8;
+    opacity: 0.8;
 }
 
 .container {
-  padding: 16px;
+    padding: 16px;
 }
 
-
-/*Home */
-.create-product-container {
-  padding   : 15px;
-  margin: auto;
-  width: 350px;
+/*Search */
+.search__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+}
+.form__search {
+    width: 350px;
+}
+.search__table,
+.home__table {
+    flex: 1;
+}
+.go-to {
+    color: #222;
 }
 
-.create-product-container label {
-  display: block;
+.form__update {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
 }
 
-.create-product-container .btn-submit {
-  margin-top: 15px;
-  cursor    : pointer;
-}
-
-
-.update-product-container {
-  padding   : 15px;
-  text-align: center;
-}
-
-.update-product-container label {
-  display: block;
-}
-
-.btn-save {
-  margin-top: 15px;
-  cursor    : pointer;
+.link {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
