@@ -4,10 +4,28 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/product.css" />
     </head>
     <body>
         <div class="wrapper">
+            <div class="header__container container">
+                <a href="/">
+                    <div class="header__logo">
+                        <img
+                            src="/images/logo.png"
+                            class="header__logo-image"
+                            alt=""
+                        />
+                        <div class="header__logo-text">CloudComputing</div>
+                    </div>
+                </a>
+                <div class="header__menu">
+                    <a href="/home" class="header__menu-item"> Add Product </a>
+                    <a href="/search" class="header__menu-item"> Search </a>
+                </div>
+            </div>
             <div class="container">
                 <form action="/update" method="POST" class="form__update">
                     <div>
@@ -17,37 +35,39 @@
                         type="hidden"
                         name="productId"
                         value="<%= product.id %>"
+                        class="form__input"
                     />
                     <div>
-                        <label>Name:</label>
+                        <label class="form__lable">Name:</label>
                         <input
                             type="text"
                             value="<%= product.productName %>"
+                            class="form__input"
                             name="productName"
                         />
-                    </div>
-                    <div>
-                        <label>Price:</label>
+                        <label class="form__lable">Price:</label>
                         <input
                             type="text"
                             value="<%= product.price %>"
+                            class="form__input"
                             name="price"
                         />
-                    </div>
-                    <div>
-                        <label>Description:</label>
+                        <label class="form__lable">Image link:</label>
+                        <input
+                            type="text"
+                            value="<%= product.image %>"
+                            class="form__input"
+                        />
+                        <label class="form__lable">Description:</label>
                         <input
                             type="text"
                             value="<%= product.description %>"
+                            class="form__input"
                             name="description"
                         />
                     </div>
                     <div>
                         <button type="submit" class="btn-submit">Update</button>
-                    </div>
-                    <div class="link">
-                        <a href="/" class="go-to">Go back Home</a>
-                        <a href="/search" class="go-to">Go to Search</a>
                     </div>
                 </form>
             </div>

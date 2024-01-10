@@ -3,15 +3,13 @@ const Product = require("../models/Product");
 module.exports = {
     index: async (req, res) => {
         const products = await Product.find({});
-
         res.render("index.ejs", { products });
     },
     create: async (req, res) => {
         try {
             const product = new Product(req.body);
             await product.save();
-
-            res.redirect("/");
+            res.redirect("/home");
         } catch (error) {
             console.log(error.message);
         }
@@ -51,7 +49,10 @@ module.exports = {
         const products = await Product.find({
             productName: new RegExp(".*" + productName + ".*"),
         });
-
         res.render("search.ejs", { products });
+    },
+    product: async (req, res) => {
+        const products = await Product.find({});
+        res.render("product.ejs", { products });
     },
 };

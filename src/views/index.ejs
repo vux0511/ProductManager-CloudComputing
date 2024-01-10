@@ -10,30 +10,67 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/product.css" />
     </head>
     <body>
         <div>
             <div class="wrapper">
+                <div class="header__container container">
+                    <a href="/">
+                        <div class="header__logo">
+                            <img
+                                src="/images/logo.png"
+                                class="header__logo-image"
+                                alt=""
+                            />
+                            <div class="header__logo-text">CloudComputing</div>
+                        </div>
+                    </a>
+                    <div class="header__menu">
+                        <a href="/home" class="header__menu-item">
+                            Add Product
+                        </a>
+                        <a href="/search" class="header__menu-item"> Search </a>
+                        <!-- <a href="" class="header__menu-item"> Login </a>
+                        <a href="" class="header__menu-item"> Sign Up </a> -->
+                    </div>
+                </div>
                 <section class="container home__container">
                     <form action="/create" method="POST" class="home__form">
                         <div>
                             <div class="title">Add New Product</div>
-                        </div>
-                        <div>
-                            <label>Name Product:</label>
-                            <input type="text" name="productName" />
-                        </div>
-                        <div>
-                            <label>Price:</label>
-                            <input type="text" name="price" />
-                        </div>
-                        <div>
-                            <label>Description:</label>
-                            <input type="text" name="description" />
-                        </div>
-
-                        <div>
+                            <div class="form__action">
+                                <label class="form__label">Name Product:</label>
+                                <input
+                                    type="text"
+                                    name="productName"
+                                    placeholder="Name product"
+                                    class="form__input"
+                                />
+                                <label class="form__label">Price:</label>
+                                <input
+                                    type="text"
+                                    name="price"
+                                    class="form__input"
+                                    placeholder="Price product"
+                                />
+                                <label class="form__label">Image:</label>
+                                <input
+                                    type="text"
+                                    name="image"
+                                    class="form__input"
+                                    placeholder="Link Image"
+                                />
+                                <label class="form__label">Description:</label>
+                                <input
+                                    type="text"
+                                    class="form__input"
+                                    name="description"
+                                    placeholder="Description product"
+                                />
+                            </div>
                             <button type="submit" class="btn-submit">
                                 Add
                             </button>
@@ -46,7 +83,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Product name</th>
+                                    <th>Product Name</th>
+                                    <th>Image</th>
                                     <th>Description</th>
                                     <th>Price</th>
                                     <th>Actions</th>
@@ -63,7 +101,8 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Product name</th>
+                                    <th>Product Name</th>
+                                    <th>Image</th>
                                     <th>Price</th>
                                     <th>Description</th>
                                     <th>Actions</th>
@@ -74,14 +113,23 @@
                                 <tr>
                                     <td><%= i+1 %></td>
                                     <td><%= products[i].productName %></td>
+                                    <td style="padding: 0px">
+                                        <img
+                                            style="width: 150px"
+                                            src="<%= products[i].image %>"
+                                            alt=""
+                                        />
+                                    </td>
                                     <td><%= products[i].price %></td>
                                     <td><%= products[i].description %></td>
                                     <td
                                         style="
                                             display: flex;
-                                            gap: 5px;
-                                            justify-content: space-evenly;
+                                            align-items: center;
+                                            justify-content: center;
                                             border: none;
+                                            border-bottom: 1px solid #222;
+                                            gap: 10px;
                                         "
                                     >
                                         <form
@@ -90,7 +138,6 @@
                                         >
                                             <button type="submit">Edit</button>
                                         </form>
-
                                         <form action="/delete" method="POST">
                                             <input
                                                 type="hidden"
@@ -107,11 +154,6 @@
                             </tbody>
                         </table>
                         <% }%>
-                    </div>
-                </section>
-                <section class="container">
-                    <div>
-                        <a href="/search" class="go-to">Move to search page</a>
                     </div>
                 </section>
             </div>

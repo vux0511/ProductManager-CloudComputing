@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Add Products</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/reset.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/product.css" />
+    </head>
+    <body>
+        <div>
+            <div class="wrapper">
+                <div class="header__container container">
+                    <a href="/">
+                        <div class="header__logo">
+                            <img
+                                src="/images/logo.png"
+                                class="header__logo-image"
+                                alt=""
+                            />
+                            <div class="header__logo-text">CloudComputing</div>
+                        </div>
+                    </a>
+                    <div class="header__menu">
+                        <a href="/home" class="header__menu-item">
+                            Add Product
+                        </a>
+                        <a href="/search" class="header__menu-item"> Search </a>
+                        <!-- <a href="" class="header__menu-item"> Login </a>
+                            <a href="" class="header__menu-item"> Sign Up </a> -->
+                    </div>
+                </div>
+                <section class="container home__container">
+                    <div class="product__wrapper">
+                        <% if(products.length === 0) { %>
+                        <div class="alert__title">
+                            No Product, Please Add Some
+                        </div>
+                        <% }%> <% if(products.length !== 0) { %> <% for(let i=0;
+                        i < products.length; i++) { %>
+                        <div class="product__item">
+                            <img
+                                src="<%= products[i].image %>"
+                                alt="Product Image"
+                                class="product__image"
+                            />
+                            <div class="product__bottom">
+                                <div class="product__name">
+                                    <%= products[i].productName %>
+                                </div>
+                                <div class="product__price">
+                                    <%= products[i].price %>
+                                </div>
+                                <div class="product__desc">
+                                    <%= products[i].description %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %> <% }%>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

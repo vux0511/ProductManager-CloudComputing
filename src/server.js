@@ -26,11 +26,6 @@ app.use(express.static("./src/public"));
 // Routes
 app.use("/", routes);
 
-// app.use(express.urlencoded({
-//   extended: false
-// }))
-// app.use(express.json());
-
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
 });

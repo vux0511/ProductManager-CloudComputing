@@ -4,10 +4,28 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Search</title>
+        <link rel="stylesheet" href="/css/reset.css" />
         <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/product.css" />
     </head>
     <body>
         <div class="wrapper">
+            <div class="header__container container">
+                <a href="/">
+                    <div class="header__logo">
+                        <img
+                            src="/images/logo.png"
+                            class="header__logo-image"
+                            alt=""
+                        />
+                        <div class="header__logo-text">CloudComputing</div>
+                    </div>
+                </a>
+                <div class="header__menu">
+                    <a href="/home" class="header__menu-item"> Add Product </a>
+                    <a href="/search" class="header__menu-item"> Search </a>
+                </div>
+            </div>
             <div class="container search__container">
                 <form action="/search" method="GET" class="form__search">
                     <div class="title">Seach Name Product</div>
@@ -15,9 +33,9 @@
                         placeholder="Enter name product"
                         type="text"
                         name="productName"
+                        class="form__input"
                     />
                     <button type="submit">Search</button>
-                    <a href="/" class="go-to back-home">Go back Home </a>
                 </form>
                 <% if(products.length === 0) { %>
                 <div class="search__table">
@@ -26,13 +44,15 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Product name</th>
-                                <th>Description</th>
+                                <th>Product Name</th>
+                                <th>Image</th>
                                 <th>Price</th>
+                                <th>Description</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <td colspan="4" class="empty_product">
+                            <td colspan="6" class="empty_product">
                                 No Product, Please Add Some
                             </td>
                         </tbody>
@@ -45,23 +65,51 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Product name</th>
+                                <th>Product Name</th>
+                                <th>Image</th>
                                 <th>Price</th>
                                 <th>Description</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <% for(let i=0; i < products.length; i++) { %>
                             <tr>
-                                <td style="padding: 10px 25px"><%= i+1 %></td>
-                                <td style="padding: 10px 25px">
-                                    <%= products[i].productName %>
+                                <td><%= i+1 %></td>
+                                <td><%= products[i].productName %></td>
+                                <td style="padding: 0px">
+                                    <img
+                                        style="width: 150px"
+                                        src="<%= products[i].image %>"
+                                        alt=""
+                                    />
                                 </td>
-                                <td style="padding: 10px 25px">
-                                    <%= products[i].price %>
-                                </td>
-                                <td style="padding: 10px 25px">
-                                    <%= products[i].description %>
+                                <td><%= products[i].price %></td>
+                                <td><%= products[i].description %></td>
+                                <td
+                                    style="
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        border: none;
+                                        border-bottom: 1px solid #222;
+                                        gap: 10px;
+                                    "
+                                >
+                                    <form
+                                        action="/<%= products[i].id %>/edit"
+                                        method="GET"
+                                    >
+                                        <button type="submit">Edit</button>
+                                    </form>
+                                    <form action="/delete" method="POST">
+                                        <input
+                                            type="hidden"
+                                            value="<%= products[i].id %>"
+                                            name="productId"
+                                        />
+                                        <button type="submit">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             <% } %>
