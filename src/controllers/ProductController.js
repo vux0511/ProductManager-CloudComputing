@@ -15,11 +15,12 @@ module.exports = {
         }
     },
     update: async (req, res) => {
-        const { productName, description, price, productId } = req.body;
+        const { productName, description, price, productId, image } = req.body;
 
         let product = await Product.findById(productId);
         product.productName = productName;
         product.description = description;
+        product.image = image;
         product.price = price;
         await product.save();
 
